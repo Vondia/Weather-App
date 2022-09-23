@@ -1,7 +1,5 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
-
-module.exports = nextConfig
+// next.config.js
+const withLinaria = require('next-linaria');
+module.exports = withLinaria({
+  /* config options here */
+});
