@@ -87,6 +87,7 @@ const Home: NextPage = () => {
               minDegrees={weather.main.temp_min}
               maxDegrees={weather.main.temp_max}
               humidity={weather.main.humidity}
+              feelsLike={weather.main.feels_like}
             />
           )
         )}
