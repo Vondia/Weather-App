@@ -10,6 +10,7 @@ import { css } from "@linaria/core";
 import { weatherForecast } from "../lib/weatherType";
 import { ForecastWidget } from "../components/ForecastWidget";
 import { getNextDay } from "../lib/getNextDay";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   const [city, setCity] = useState("");
@@ -25,7 +26,6 @@ const Home: NextPage = () => {
       .get(url)
       .then((res) => {
         setWeather(res.data);
-        console.log(res.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -62,7 +62,7 @@ const Home: NextPage = () => {
           </button>
         </form>
         {loading ? (
-          <h2>Loading...</h2>
+          <h2 style={{ marginTop: "2rem" }}>Loading...</h2>
         ) : (
           weather.list?.[0].main && (
             <MainWeather
@@ -82,15 +82,18 @@ const Home: NextPage = () => {
         <div className={forecastDisplay}>
           {weather.list?.[0].main &&
             forecastFilteredDays?.map((weather, index) => (
-              <ForecastWidget
-                key={index}
-                date={weather?.dt_txt.slice(0, 11)}
-                src={`http://openweathermap.org/img/wn/${weather.weather?.[0].icon}@2x.png`}
-                description={weather?.weather[0].description}
-                minDegrees={weather?.main.temp_min}
-                maxDegrees={weather?.main.temp_max}
-                feelsLike={weather?.main.feels_like}
-              />
+              <Link key={index} href={`/weekvoorspelling/${weather.dt}`}>
+                <a className={widgetAnimation}>
+                  <ForecastWidget
+                    date={weather?.dt_txt.slice(0, 11)}
+                    src={`http://openweathermap.org/img/wn/${weather.weather?.[0].icon}@2x.png`}
+                    description={weather?.weather[0].description}
+                    minDegrees={weather?.main.temp_min}
+                    maxDegrees={weather?.main.temp_max}
+                    feelsLike={weather?.main.feels_like}
+                  />
+                </a>
+              </Link>
             ))}
         </div>
       </Layout>
@@ -136,6 +139,34 @@ const forecastDisplay = css`
 
   @media screen and (min-width: 1024px) {
     grid-template-columns: repeat(4, 1fr);
+  }
+`;
+
+const widgetAnimation = css`
+  opacity: 0;
+  filter: blur(4px);
+
+  &:nth-child(1) {
+    animation: fade-in 0.3s 0.9s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+
+  &:nth-child(2) {
+    animation: fade-in 0.3s 1.2s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+
+  &:nth-child(3) {
+    animation: fade-in 0.3s 1.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+
+  &:nth-child(4) {
+    animation: fade-in 0.3s 1.8s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+
+  @keyframes fade-in {
+    100% {
+      opacity: 1;
+      filter: blur(0);
+    }
   }
 `;
 

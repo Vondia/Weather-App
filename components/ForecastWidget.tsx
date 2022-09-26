@@ -45,31 +45,6 @@ const parent = css`
   align-items: center;
   border-radius: 1rem;
   overflow: hidden;
-  opacity: 0;
-  filter: blur(4px);
-
-  &:nth-child(1) {
-    animation: fade-in 0.3s 0.9s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-
-  &:nth-child(2) {
-    animation: fade-in 0.3s 1.2s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-
-  &:nth-child(3) {
-    animation: fade-in 0.3s 1.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-
-  &:nth-child(4) {
-    animation: fade-in 0.3s 1.8s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-
-  @keyframes fade-in {
-    100% {
-      opacity: 1;
-      filter: blur(0);
-    }
-  }
 `;
 
 const image = css`
