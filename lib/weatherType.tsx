@@ -10,6 +10,7 @@ export interface weatherForecast {
         humidity: number;
       };
       dt_txt: string;
+      dt: number;
       weather: [
         {
           id: number;
