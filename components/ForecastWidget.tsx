@@ -24,7 +24,7 @@ export const ForecastWidget: FC<ForecastWidgetProps> = ({
       <div className={dateText}>
         <h2>{date}</h2>
       </div>
-      <div>
+      <div style={{ width: "100%" }}>
         <div className={image}>
           <Image src={src} alt="weather picture" width="100px" height="60px" />
         </div>
