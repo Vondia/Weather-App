@@ -40,6 +40,7 @@ const Home: NextPage = () => {
   const forecastList = weather.list;
   const nextDayList = getNextDay();
   const forecastFilteredDays = nextDayList?.map((day) => forecastList?.[day]);
+  console.log(forecastList);
 
   return (
     <div>
@@ -166,6 +167,15 @@ const widgetAnimation = css`
     100% {
       opacity: 1;
       filter: blur(0);
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: scale(1.1);
+      transition-property: all;
+      transition-duration: 0.2s;
+      transition-timing-function: ease-in-out;
     }
   }
 `;
