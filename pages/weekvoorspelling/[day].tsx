@@ -13,13 +13,11 @@ export const DayDetails: FC<DayDetailsProps> = ({ day }) => {
     </div>
   );
 };
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const slug = context.params?.day;
-
+  const day = context.params?.day;
   return {
     props: {
-      slug: slug,
+      day: day,
     },
   };
 };
